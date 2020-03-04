@@ -1,8 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-//import React, {Component} from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import React, * as react from 'react';
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 const data = [
   {name: 'Page A', pv: 2400, amt: 2400},
@@ -14,7 +12,7 @@ const data = [
   {name: 'Page G', pv: 4300, amt: 2100},
 ];
 
-class SimpleLineChart extends Component {
+class SimpleLineChart extends react.Component {
   
   render () {
     return (
