@@ -11,8 +11,20 @@ class App extends Component{
 			items: [],
 			isLoaded: false,
 		}
+		this.state ={value: ''}
+
+		this.handleChange = this.handleChange.bind(this);
+		//this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event){
+		this.setState({value: event.target.value});
 	}
 	
+	handleSubmit(event) {
+		
+	  }
+
 	componentDidMount(){
 		fetch('https://luis-back-node.herokuapp.com/dados_da_estacao')
 			.then(res => res.json())
@@ -23,11 +35,10 @@ class App extends Component{
 				})
 			});
 	}
-		
+	
 	render(){
 		
 		var { isLoaded, items } = this.state;
-		
 		
 		if(!isLoaded){
 			return <div>Loading...</div>;
@@ -51,7 +62,6 @@ class App extends Component{
 				L++;
 			}
 	
-			
 			const data = [
 				{data: vector[0], precipitacao: 0},
 				{data: vector[1], precipitacao: 20},
@@ -65,7 +75,7 @@ class App extends Component{
 				return (
 					<div className="App">
 					
-						<select>
+						<select value={this.state.value} onChange={this.handleChange}>
 							<option value="daily">Dia</option>
 							<option value="weekly">Semana</option>
 							<option value="Month">Mês</option>
@@ -75,7 +85,7 @@ class App extends Component{
 						</select>				
 				
 						<LineChart
-							width={1300}
+							width={1800}
 							height={600}
 							data={data}
 							margin={{top: 5, right: 30, left: 20, bottom: 5}}
@@ -100,6 +110,5 @@ class App extends Component{
 		}
 	}
 }
-
 
 export default App;
